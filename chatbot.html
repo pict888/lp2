@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Healthcare Chatbot</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            background: #f0f0f0;
+            text-align: center;
+        }
+
+        #chat{
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+            margin: auto;
+            padding: 10px;
+            overflow-y: auto;
+            background: white;
+            text-align: left;
+        }
+
+        input{
+            width: 300px;
+            padding: 10px;
+        }
+
+        button{
+            padding: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h2>Healthcare Chatbot</h2>
+
+    <div id="chat">
+
+        <p>
+            <b>Bot:</b>
+            Hello! Ask about doctors,
+            timings, appointments or emergency.
+        </p>
+
+    </div>
+
+    <br>
+
+    <input type="text" id="userInput" placeholder="Type message" onkeypress="if(event.key=='Enter') sendMessage()">
+
+    <button onclick="sendMessage()">
+        Send
+    </button>
+
+    <script>
+
+        function getReply(msg)
+        {
+            msg = msg.toLowerCase();
+
+            if(msg.includes("timing"))
+            {
+                return "Hospital timings are 8 AM to 8 PM";
+            }
+
+            else if(msg.includes("doctor"))
+            {
+                return "Available doctors: Dr Sharma, Dr Mehta";
+            }
+
+            else if(msg.includes("appointment"))
+            {
+                return "Call 9876543210 for appointment";
+            }
+
+            else if(msg.includes("emergency"))
+            {
+                return "Emergency services available 24/7";
+            }
+
+            else if(msg.includes("hello") || msg.includes("hi"))
+            {
+                return "Hello! How can I help you?";
+            }
+
+            else
+            {
+                return "Sorry, I didn't understand";
+            }
+        }
+
+        function sendMessage()
+        {
+            let input = document.getElementById("userInput");
+
+            let chat = document.getElementById("chat");
+
+            let userText = input.value;
+
+            if(userText == "")
+            {
+                return;
+            }
+
+            // User Message
+            chat.innerHTML += "<p><b>You:</b> "+ userText +"</p>";
+
+            // Bot Reply
+            let reply = getReply(userText);
+
+            chat.innerHTML += "<p><b>Bot:</b> " + reply + "</p>";
+
+            input.value = "";
+
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+    </script>
+
+</body>
+</html>
