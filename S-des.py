@@ -85,13 +85,16 @@ def strToBits(s):
     return [int(x) for x in s]
 
 # MAIN
-plainStr =
-input("Enter 8-bit Plaintext: ")
-k1Str = input("Enter 8-bit Key K1: ")
-k2Str = input("Enter 8-bit Key K2: ")
+# MAIN
+keyStr = input("Enter 10-bit Key: ")
+plainStr = input("Enter 8-bit Plaintext: ")
+key = strToBits(keyStr)
 plain = strToBits(plainStr)
-K1 = strToBits(k1Str)
-K2 = strToBits(k2Str)
+
+# Generate Keys
+K1, K2 = generateKeys(key)
+print("\nK1 =", K1)
+print("K2 =", K2)
 
 # Encryption
 cipher = encrypt(plain, K1, K2)
